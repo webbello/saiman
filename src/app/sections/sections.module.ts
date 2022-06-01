@@ -11,7 +11,7 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { TeamComponent } from './team/team.component';
 import { ContactComponent } from './contact/contact.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { ContactComponent } from './contact/contact.component';
     ContactComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class SectionsModule { }
