@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from './../../services/contact.service';
+// import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-contact-section',
@@ -7,11 +8,14 @@ import { ContactService } from './../../services/contact.service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  displayStyle = "none";
+  formModal: any;
   displayLoading = "none";
   constructor(private contactData: ContactService) { }
 
   ngOnInit(): void {
+    const element = document.getElementById('contactSuccessModel') as HTMLElement;
+    // this.formModal = new Modal(element);
+    this.formModal =  new (window as any).bootstrap.Modal(element)
   }
   onSubmit(data: any) {
     this.displayLoading = "block";
@@ -25,6 +29,7 @@ export class ContactComponent implements OnInit {
     var dateTime = date+' '+time;
 
     var formdata = new FormData();
+    
     formdata.append("name", data.value.name);
     formdata.append("email", data.value.email);
     formdata.append("subject", data.value.subject);
@@ -36,12 +41,9 @@ export class ContactComponent implements OnInit {
     .then(response => response.json())
     .then(result => {
       console.log('result', result)
-      // var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-      //   keyboard: false
-      // })
-      // myModal.show();
+      
+      this.formModal.show();
       this.displayLoading = "none";
-      this.displayStyle = "block";
     })
     .catch(error => console.log('error', error));
   }
