@@ -73,7 +73,7 @@
                   <div class="sent-message">Your message has been sent. Thank you!</div>
                 </div>
                 <div class="text-center">
-                  <button type="submit">Send Message <span [ngStyle]="{'display':displayLoading}" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  <button type="submit" class="btn">Send Message <span *ngIf="displayLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                   </button></div>
               </form>
   
