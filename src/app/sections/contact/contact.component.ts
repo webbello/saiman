@@ -16,6 +16,10 @@ export class ContactComponent implements OnInit {
     this.formModal =  new (window as any).bootstrap.Modal(element)
   }
   onSubmit(data: any) {
+    if (!data.valid) {
+      // data.markAsTouched();
+      return;
+    }
     this.displayLoading = true;
     console.warn('Your form data : ', data.value);
     // this.contactData.sendMessage(data.value).subscribe( (result) => {
@@ -33,15 +37,17 @@ export class ContactComponent implements OnInit {
     formdata.append("subject", data.value.subject);
     formdata.append("message", data.value.message);
     formdata.append("date", dateTime);
-    console.log('data', formdata);
+
+    console.log('data', data);
 
     fetch("https://script.google.com/macros/s/AKfycbyD84cmP1oiyGHg42yNN87ImwIzyOUWj1iyuMueXWFngyA--wEwMD1XwwAXXCFIHzTv/exec", {method: "POST", body: formdata})
     .then(response => response.json())
     .then(result => {
       console.log('result', result)
       
-      this.formModal.show();
       this.displayLoading = false;
+      this.formModal.show();
+      data.reset();
     })
     .catch(error => console.log('error', error));
   }
