@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from './../../services/contact.service';
 
@@ -9,13 +10,25 @@ import { ContactService } from './../../services/contact.service';
 export class ContactComponent implements OnInit {
   formModal: any;
   displayLoading = false;
-  constructor(private contactData: ContactService) { }
+  visitorDetail: any;
+  constructor(private http: HttpClient, private contactData: ContactService) {}
 
   ngOnInit(): void {
     const element = document.getElementById('contactSuccessModel') as HTMLElement;
-    this.formModal =  new (window as any).bootstrap.Modal(element)
+    this.formModal =  new (window as any).bootstrap.Modal(element);
+    this.fetchVisitorDetail();
+  }
+  private fetchVisitorDetail(){
+    this.http.get('http://ip-api.com/json')
+    .subscribe((res) => {
+      console.log('fetch response', JSON. stringify(res));
+      this.visitorDetail = res;
+    })
   }
   onSubmit(data: any) {
+
+    // console.log('visitorDetail', this.visitorDetail)
+
     if (!data.valid) {
       // data.markAsTouched();
       return;
@@ -37,14 +50,15 @@ export class ContactComponent implements OnInit {
     formdata.append("subject", data.value.subject);
     formdata.append("message", data.value.message);
     formdata.append("date", dateTime);
+    formdata.append("visitor", JSON.stringify(this.visitorDetail));
+    formdata.append("city", this.visitorDetail.city);
 
-    console.log('data', data);
+    // console.log('data', data.value);
 
     fetch("https://script.google.com/macros/s/AKfycbyD84cmP1oiyGHg42yNN87ImwIzyOUWj1iyuMueXWFngyA--wEwMD1XwwAXXCFIHzTv/exec", {method: "POST", body: formdata})
     .then(response => response.json())
     .then(result => {
       console.log('result', result)
-      
       this.displayLoading = false;
       this.formModal.show();
       data.reset();
