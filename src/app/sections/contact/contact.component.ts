@@ -43,6 +43,8 @@ export class ContactComponent implements OnInit {
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
 
+    var city = (this.visitorDetail) ? this.visitorDetail.city : "";
+
     var formdata = new FormData();
 
     formdata.append("name", data.value.name);
@@ -51,7 +53,7 @@ export class ContactComponent implements OnInit {
     formdata.append("message", data.value.message);
     formdata.append("date", dateTime);
     formdata.append("visitor", JSON.stringify(this.visitorDetail));
-    formdata.append("city", this.visitorDetail.city || '');
+    formdata.append("city", city);
 
     // console.log('data', data.value);
 
