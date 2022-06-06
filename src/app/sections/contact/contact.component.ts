@@ -42,9 +42,8 @@ export class ContactComponent implements OnInit {
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
-    console.log('visitorDetail', this.visitorDetail);
-    var city = (this.visitorDetail.city) ? this.visitorDetail.city : "";
-    console.log('city', city);
+    // console.log('visitorDetail', this.visitorDetail);
+  
     var formdata = new FormData();
 
     formdata.append("name", data.value.name);
@@ -53,7 +52,6 @@ export class ContactComponent implements OnInit {
     formdata.append("message", data.value.message);
     formdata.append("date", dateTime);
     formdata.append("visitor", JSON.stringify(this.visitorDetail));
-    formdata.append("city", city);
 
     // console.log('data', data.value);
 
