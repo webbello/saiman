@@ -51,7 +51,7 @@ export class ContactComponent implements OnInit {
     formdata.append("message", data.value.message);
     formdata.append("date", dateTime);
     formdata.append("visitor", JSON.stringify(this.visitorDetail));
-    formdata.append("city", this.visitorDetail.city);
+    formdata.append("city", this.visitorDetail.city || '');
 
     // console.log('data', data.value);
 
