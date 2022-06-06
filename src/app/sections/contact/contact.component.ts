@@ -42,9 +42,9 @@ export class ContactComponent implements OnInit {
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
-
-    var city = (this.visitorDetail) ? this.visitorDetail.city : "";
-
+    console.log('visitorDetail', this.visitorDetail);
+    var city = (this.visitorDetail.city) ? this.visitorDetail.city : "";
+    console.log('city', city);
     var formdata = new FormData();
 
     formdata.append("name", data.value.name);
