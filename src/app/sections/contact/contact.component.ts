@@ -19,7 +19,7 @@ export class ContactComponent implements OnInit {
     this.fetchVisitorDetail();
   }
   private fetchVisitorDetail(){
-    this.http.get('http://ip-api.com/json')
+    this.http.get('https://ip-api.com/json')
     .subscribe((res) => {
       console.log('fetch response', JSON. stringify(res));
       this.visitorDetail = res;
