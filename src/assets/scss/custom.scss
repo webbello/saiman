@@ -460,7 +460,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero .btn-book {
   margin-left: 15px;
 }
-#hero .play-btn {
+#hero .play-btn, .about .play-btn {
   width: 94px;
   height: 94px;
   background: radial-gradient(#cda45e 50%, rgba(205, 164, 94, 0.4) 52%);
@@ -469,7 +469,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   overflow: hidden;
 }
-#hero .play-btn::after {
+#hero .play-btn::after, .about .play-btn::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -483,7 +483,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 100;
   transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
-#hero .play-btn::before {
+#hero .play-btn::before, .about .play-btn::before  {
   content: "";
   position: absolute;
   width: 120px;
@@ -505,7 +505,7 @@ h1, h2, h3, h4, h5, h6 {
   left: -15%;
   background: rgba(198, 16, 0, 0);
 }
-#hero .play-btn:hover::after {
+#hero .play-btn:hover::after, .about .play-btn:hover::after {
   border-left: 15px solid $main-theme-color;
   transform: scale(20);
 }
@@ -602,6 +602,14 @@ section {
   text-transform: uppercase;
   color: #aaaaaa;
   font-family: "Poppins", sans-serif;
+}
+.section-title.text-center h2::before {
+  content: "";
+  width: 120px;
+  height: 1px;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 4px 10px;
 }
 .section-title h2::after {
   content: "";
@@ -746,6 +754,11 @@ section {
 }
 .about .content p:last-child {
   margin-bottom: 0;
+}
+.about .play-btn {
+  position: absolute;
+  left: calc(50% - 47px);
+  top: calc(50% - 47px);
 }
 @media (min-width: 1024px) {
   .about {
